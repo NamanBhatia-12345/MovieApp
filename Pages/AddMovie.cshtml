@@ -1,0 +1,37 @@
+﻿@page
+@model MovieApp.Pages.AddMovieModel
+@{
+    ViewData["Title"] = "Add Movie";
+}
+
+
+<h2 class="m-2">@ViewData["Title"]</h2>
+<hr />
+<a class="btn btn-secondary" asp-page="/Index">Back</a>
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <form method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Title</label>
+                <input asp-for="Movie.Title" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Movie Title">
+                <span class="text-danger" asp-validation-for="@Model.Movie.Title"></span>
+            </div>
+            <div class="mb-3">
+                <label for="quantity" class="form-label">Rating</label>
+                <input asp-for="Movie.Rate" type="number" class="form-control" min="1" max="10" id="quantity" placeholder="1">
+                <span class="text-danger" asp-validation-for="@Model.Movie.Rate"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Photo" class="form-label">Image</label>
+                <input asp-for="Photo" class="form-control" type="file" id="formFile">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                <textarea asp-for="Movie.Description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <span class="text-danger" asp-validation-for="@Model.Movie.Description"></span>
+            </div>
+            <button type="submit" class="btn btn-success">Add Movie</button>
+        </form>
+    </div>
+</div>

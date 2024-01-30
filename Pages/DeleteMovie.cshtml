@@ -1,0 +1,27 @@
+﻿@page "{id:int}"
+@model MovieApp.Pages.DeleteMovieModel
+@{
+    ViewData["Title"] = "Delete Movie";
+}
+
+<h2 class="m-2">@ViewData["Title"]</h2>
+<hr />
+
+@if (Model.Movie?.Id == null)
+{
+    <h2 class="m-2 text-danger">Not Found</h2>
+    <hr />
+    <p>The movie does not exit with id :- @ViewData["id"]</p>
+    <a asp-page="/Index" class="m-2 btn btn-secondary" style="width:auto;">Get Back to Home Page</a>
+}
+else
+{
+    <div class="m-2 alert alert-danger">
+        <form method="post">
+            <h5 class="mb-2">Are you sure that you want to delete the movie @Model.Movie.Title</h5>
+            <button class="btn btn-danger" type="submit">Yes</button>
+            <a asp-page="/Movie" asp-route-id="@Model.Movie.Id" class="btn btn-primary">No</a>
+        </form>
+    </div>
+    
+}

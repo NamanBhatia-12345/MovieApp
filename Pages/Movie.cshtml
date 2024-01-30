@@ -1,0 +1,37 @@
+﻿@page "{id:int}"
+@model MovieApp.Pages.MovieModel
+@{
+    ViewData["Title"] = "Movie Details";
+    var photoPath = "~/images/" + (Model.Movie?.ImageUrl ?? "noimage.jpg");
+}
+
+@if (Model.Movie?.Id == null)
+{
+    <h2 class="m-2 text-danger">Not Found</h2>
+    <hr />
+    <p>The movie does not exit with id :- @ViewData["id"]</p>
+    <a asp-page="/Index" class="m-2 btn btn-secondary" style="width:auto;">Get Back to Home Page</a>
+}
+
+else
+{
+    <h2 class="m-2">@ViewData["Title"]</h2>
+    <hr />
+    <div class="card">
+        <div class="card-header">
+            Movie Id - @Model.Movie.Id
+        </div>
+        <div class="card-body">
+            <h5 class="card-text">@Model.Movie.Title</h5>
+            <p class="card-text">@Model.Movie.Rate/10</p>
+            <p class="card-text">@Model.Movie.Description</p>
+            <img class="offset-3 imageThumbnail" src="@photoPath" asp-append-version="true"/>
+        </div>
+        <div class="card-footer">
+            <a asp-page="/Index" class="btn btn-success">Show All</a>
+            <a asp-page="/EditMovie" asp-route-id="@Model.Movie.Id" class="ms-1 btn btn-primary">Edit Movie</a>
+            <a asp-page="/DeleteMovie" asp-route-id="@Model.Movie.Id" class="btn btn-danger">Delete Movie</a>
+        </div>
+
+    </div>
+}

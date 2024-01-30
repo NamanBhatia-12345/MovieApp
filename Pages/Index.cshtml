@@ -1,0 +1,50 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h2 class="m-2">All Movies</h2>
+<hr />
+<form class="mt-2" method="get">
+    <div class="input-group">
+        <input class="form-control col-md-8" asp-for="SearchTerm" />
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </div>
+</form>
+<div class="float-end m-2">
+    <a asp-page="/AddMovie" class="btn btn-warning">Add Movie</a>
+</div>
+
+@if (Model.Movies.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Title</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var _movie in Model.Movies)
+            {
+                <tr>
+                    <th scope="row">@_movie.Id</th>
+                    <td>@_movie.Title</td>
+                    <td>@_movie.Rate/10</td>
+                    <td><a class="btn btn-primary" asp-page="/Movie" asp-route-id="@_movie.Id">Show Details</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+}
+else
+{
+    <p class="m-2">No movies is present at this moment. </p>
+}
